@@ -73,11 +73,11 @@ def main():
                 current_time = datetime.now().strftime("%S-%M-%H-%d-%m-%y")
                 
 
-                conversation_risk = [{'role': 'system', 'content': open_file('system_05_risk.md')}, {'role': 'user', 'content': st.session_state.get('chat_log', '')}]
+                conversation_risk = [{'role': 'system', 'content': open_file('System_02_Risk.md')}, {'role': 'user', 'content': st.session_state.get('chat_log', '')}]
                 risk, tokens_risk = chatbotGPT4(conversation_risk)
                 
 
-                conversation_category = [{'role': 'system', 'content': open_file('system_06_classification.md')}, {'role': 'user', 'content': st.session_state.get('chat_log', '')}]
+                conversation_category = [{'role': 'system', 'content': open_file('System_03_Classification.md')}, {'role': 'user', 'content': st.session_state.get('chat_log', '')}]
                 category, tokens_category = chatbotGPT4(conversation_category)
                 
 
@@ -112,7 +112,7 @@ def main():
                     docs = loaded_KB.similarity_search(user_q)
                     
                     # Preparing content for further processing
-                    with open('system_07_combined.md', 'r') as file:
+                    with open('System_04_Comprehensive.md', 'r') as file:
                         system_content = file.read()
 
                     # Append the relevant documents and obtained information to system_content

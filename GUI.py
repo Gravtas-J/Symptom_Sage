@@ -67,7 +67,6 @@ def main():
             st.session_state['formatted_conversation'] = chat_log
 
 
-
             if st.sidebar.button("📌Generate Assessment📌"):
 
                 current_time = datetime.now().strftime("%S-%M-%H-%d-%m-%y")
@@ -83,19 +82,15 @@ def main():
 
                 combined_content = f"Risk Assessment:\n{risk}\n\nCategory Assessment:\n{category}"
                 
-                filename = f'logs/Patient Assessment and Categorisation - {current_time}.txt'
-                save_file(filename, combined_content)
-                
                 st.session_state['clinical'] = combined_content
                 
-                with open(filename, "r") as file:
-                    file_content = file.read()
                 st.sidebar.download_button(
                     label="Download Assessment & Categorisation",
-                    data=file_content,
+                    data=combined_content,
                     file_name=f'Patient Assessment & Categorisation - {current_time}.txt',
                     mime="text/plain"
                 )
+                
             st.sidebar.write("This will generate the Risk Assessment and Categorise the patient")
             for _ in range(10): 
                 st.sidebar.write("")    

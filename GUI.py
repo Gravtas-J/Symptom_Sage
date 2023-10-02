@@ -23,7 +23,7 @@ def chatbotGPT4(conversation, model="gpt-4-0613", temperature=0, max_tokens=2000
     text = response['choices'][0]['message']['content']
     return text, response['usage']['total_tokens']
 
-def chatbotGPT3(conversation, model="gpt-4-0613", temperature=0, max_tokens=2000):
+def chatbotGPT3(conversation, model="gpt-3.5-turbo-16k", temperature=0, max_tokens=2000):
     response = openai.ChatCompletion.create(model=model, messages=conversation, temperature=temperature, max_tokens=max_tokens)
     text = response['choices'][0]['message']['content']
     return text, response['usage']['total_tokens']
@@ -54,12 +54,12 @@ def main():
                 if user_input.strip().upper():
                     # Append user's and assistant's messages to the conversation state
                     st.session_state['conversation'].append({'role': 'user', 'content': user_input})
-                    response, tokens = chatbotGPT4(st.session_state['conversation'])
+                    response, tokens = chatbotGPT3(st.session_state['conversation'])
                     st.session_state['conversation'].append({'role': 'assistant', 'content': response})
                     st.session_state['all_messages'].extend([f'PATIENT: {user_input}', f'INTAKE: {response}'])
                     wrapped_response = textwrap.fill(response, width=80)
                     response_placeholder.text(wrapped_response)
-            
+             
 
             text_block = '\n\n'.join(st.session_state['all_messages'])
             chat_log = f'<<BEGIN PATIENT INTAKE CHAT>>\n\n{text_block}\n\n<<END PATIENT INTAKE CHAT>>'

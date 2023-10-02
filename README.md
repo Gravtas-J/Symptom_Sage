@@ -60,6 +60,7 @@ It can also be accessed over a network with 'http:[your IP]:8501
 3. Click on "Generate Report" to receive a detailed report including hypothesis and clinical assessments.
 4. Download the assessments and reports as needed.
 5. Click "Reset Conversation" to start a new session.
+6. if you want faster response times change `chatbotGPT4` to `chatbotGPT3` where applicable (Ctrl+F is your friend)
 
 ## Contributions
 

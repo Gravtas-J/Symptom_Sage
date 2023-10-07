@@ -65,11 +65,15 @@ def main():
             chat_log = f'<<BEGIN PATIENT INTAKE CHAT>>\n\n{text_block}\n\n<<END PATIENT INTAKE CHAT>>'
             st.session_state['chat_log'] = chat_log
             st.session_state['formatted_conversation'] = chat_log
-
+            if st.sidebar.button("generate chatlogs"):
+                label="Download Assessment & Categorisation",
+                data=chat_log,
+                file_name=f'Patient Assessment & Categorisation - {current_time}.txt',
+                mime="text/plain"
 
 
             if st.sidebar.button("📌Generate Assessment📌"):
-
+                
                 current_time = datetime.now().strftime("%S-%M-%H-%d-%m-%y")
                 
 

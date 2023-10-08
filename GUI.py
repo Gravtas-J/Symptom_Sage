@@ -7,7 +7,9 @@ import os
 import pickle
 import textwrap
 
-
+st.set_page_config(
+        page_title="Symptom Sage",
+)
 def save_file(filepath, content):
     with open(filepath, 'w', encoding='utf-8') as outfile:
         outfile.write(content)

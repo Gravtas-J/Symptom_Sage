@@ -27,7 +27,9 @@ def chatbotGPT3(conversation, model="gpt-3.5-turbo-16k", temperature=0, max_toke
     response = openai.ChatCompletion.create(model=model, messages=conversation, temperature=temperature, max_tokens=max_tokens)
     text = response['choices'][0]['message']['content']
     return text, response['usage']['total_tokens']
-
+st.set_page_config(
+        page_title="Symptom Sage",
+)
 
 def main():
             st.markdown(

@@ -15,8 +15,7 @@ load_dotenv()
 
 USERNAME = os.getenv("USN")
 PASSWORD = os.getenv("PWD")
-st.write(USERNAME)
-st.write(PASSWORD)
+
 
 def is_user_authenticated(username, password):
     """Check if the provided username and password match the dummy credentials."""

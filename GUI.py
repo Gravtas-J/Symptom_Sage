@@ -10,6 +10,30 @@ import textwrap
 st.set_page_config(
         page_title="Symptom Sage",
 )
+
+load_dotenv()
+
+USERNAME = os.getenv("USN")
+PASSWORD = os.getenv("PWD")
+st.write(USERNAME)
+st.write(PASSWORD)
+
+def is_user_authenticated(username, password):
+    """Check if the provided username and password match the dummy credentials."""
+    return username == USERNAME and password == PASSWORD
+
+def show_login_page():
+    """Display the login page."""
+    st.title("Login to Symptom Sage")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login"):
+        if is_user_authenticated(username, password):
+            st.session_state.is_logged_in = True
+        else:
+            st.warning("Invalid username or password")
+
 def save_file(filepath, content):
     with open(filepath, 'w', encoding='utf-8') as outfile:
         outfile.write(content)
@@ -29,11 +53,14 @@ def chatbotGPT3(conversation, model="gpt-3.5-turbo-16k", temperature=0, max_toke
     response = openai.ChatCompletion.create(model=model, messages=conversation, temperature=temperature, max_tokens=max_tokens)
     text = response['choices'][0]['message']['content']
     return text, response['usage']['total_tokens']
-st.set_page_config(
-        page_title="Symptom Sage",
-)
+
+
 
 def main():
+            # Check if the user is already authenticated
+            if not st.session_state.get("is_logged_in"):
+                show_login_page()
+                return  # Stop execution if the user is not authenticated
             st.markdown(
             "<style>.reportview-container .main .block-container {max-width: 100%;} </style>",
             unsafe_allow_html=True,

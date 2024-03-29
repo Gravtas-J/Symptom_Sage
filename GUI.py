@@ -92,11 +92,6 @@ def main():
             chat_log = f'<<BEGIN CHAT>>\n\n{text_block}\n\n<<END CHAT>>'
             st.session_state['chat_log'] = chat_log
             st.session_state['formatted_conversation'] = chat_log
-<<<<<<< HEAD
-
-
-            if st.sidebar.button("Create profile"):
-=======
             if st.sidebar.button('Chat Log'):
                 st.sidebar.download_button(
                 label="Download Chat Log",
@@ -105,7 +100,6 @@ def main():
                 mime="text/plain"
                 )
             if st.sidebar.button("📌Generate Assessment📌"):
->>>>>>> b3ef962e5b6e0055de78d59233325393e7d9e472
 
                 current_time = datetime.now().strftime("%S-%M-%H-%d-%m-%y")
                 

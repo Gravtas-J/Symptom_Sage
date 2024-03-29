@@ -1,71 +1,51 @@
-# Medical Device Disclaimer
+# Documentation for Chatbot using ChatGPT4
 
-This software, found under this repository and licensed under a Learning Use Licence, is an experimental project and is NOT a medical device. It is not intended to be used as a medical device or as a substitute for professional medical advice, diagnosis, or treatment.
+## Overview
 
-The software is designed to test artificial intelligence's ability to perform patient intake, chart notes, and offer investigative and diagnostic aid. However, it is important to note that this software has NOT been tested, validated, or approved by the Food and Drug Administration (FDA) or any other regulatory body for medical devices. This is a Notation tool and final actions taken are the reponsibility of the end user and not the creator of the software or OpenAI
-
-The software is provided "AS IS", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
-
-The use of this software should not be used for diagnosing or treating health problems, or for prescribing any medication or other treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read or interpreted from the software.
-
-By using this software, you acknowledge and agree that you understand this disclaimer and that you use the software at your own risk. If you do not agree with this disclaimer, do not use the software. 
-
-This disclaimer may be updated from time to time, and it is the responsibility of the user to review and comply with the current version of the disclaimer.
-
-# Symptom Sage Chatbot
-
-Symptom Sage is an interactive chatbot that aids in capturing patient symptoms and generating assessments, facilitating smoother patient-intake processes.
+This Chatbot application leverages OpenAI's ChatGPT4 model to simulate an interview-style conversation. Its primary objective is to extract vital information from the user, essential for creating a LinkedIn profile. This chatbot uses a set of system prompts to guide the chatbot and produce deterministic responses. 
 
 ## Features
 
-- **Interactive Conversations**: Engage in real-time conversations with the chatbot to describe symptoms.
-- **Assessment Generation**: Receive risk and category assessments based on the provided symptoms.
-- **Report Generation**: Generate a detailed report including hypothesis, clinical assessment guide, and referral recommendations.
-- **Downloadable Outputs**: Download the generated assessments and reports for further use.
-- **User-Friendly Interface**: A web-based interface built with Streamlit for ease of use.
-- **Modular Codebase**: A clean, modular codebase ensuring easy maintenance and updates.
-- **FAISS KB search**:Is able to have hypothesis re-inforced with domain specific information
-## Installation
+### 1. Interview-style Chat
 
-1. Clone this repository:
+The Chatbot initiates an interview-style conversation with the user. It asks a series of questions designed to glean essential information about the user's experience, qualifications, skills, and other relevant details. These details are crucial for constructing a professional LinkedIn profile.
 
-git clone https://github.com/Gravtas-J/symptom-sage-chatbot.git
-cd symptom-sage-chatbot
+**How to Use**:
+- Launch the application. `streamlit run GUI.py`
+- Engage with the chatbot and answer the questions as prompted.
+- Ensure you provide accurate and comprehensive information for a more detailed profile.
 
+### 2. LinkedIn Profile Builder
 
-2. Install the required packages:
+Based on the user's responses during the interview, the Chatbot processes this information to generate a LinkedIn profile. This feature helps users who are unsure about how to best present themselves on the platform or those looking for a quick way to get started.
 
-pip install -r requirements.txt
+**How to Use**:
+- After completing the interview chat, use the sidebar option labeled "Create Profile."
+- The Chatbot will then generate a LinkedIn profile based on the information provided during the chat.
+- You can then download the profile using the "Download Profile" button.
 
+### 3. Recommendations
 
-3. Run Streamlit:
+To add value to the user's LinkedIn profile, the Chatbot provides recommendations on potential projects, studies, or other valuable additions that can enhance the profile's appeal. This feature offers users insights into areas they might not have considered and can make their profile stand out.
 
-streamlit run GUI.py
+**How to Use**:
+- Once the LinkedIn profile has been generated, the Chatbot will offer a series of recommendations.
+- Consider incorporating these suggestions into your actual LinkedIn profile or using them as a basis for further professional development.
 
-or for embedded search feature:
+## Implementation
 
-streamlit run GUI_embed.py
+The Chatbot uses a combination of system prompts and user interactions to guide its responses. These prompts are stored in files like `System_prompts\Interview.md`, `System_prompts\Profilebuilder.md`, and `System_prompts\Suggestions.md`.
 
-If you are wanting to use local embedded VS store make sure you have a file "embeddings.pkl" - my other repo https://github.com/Gravtas-J/EMBEDATRON3000 can help if you don't have them. Not included for copywrite reasons. 
+For a deterministic response from the ChatGPT4 model, the application sets the `temperature` parameter to 0 during interactions, ensuring that the model's output remains consistent across multiple sessions.
 
+## Getting Started
 
-Now, open your web browser and go to `http://localhost:8501` to interact with the Symptom Sage Chatbot.
+1. **Environment Setup**:
+   - Ensure you have the necessary libraries installed, including `streamlit`, `openai`, `dotenv`, among others.
+   - Obtain an OpenAI API key and save it in a `.env` file under the variable `OPENAI_API_KEY`.
+  
+2. **Running the Application**:
+   - Navigate to the directory containing the chatbot script.
+   - Run the script using the command: `streamlit run GUI.py`
+   - Follow the on-screen instructions to interact with the Chatbot.
 
-It can also be accessed over a network with 'http:[your IP]:8501
-
-## Usage
-
-1. Initiate a conversation by describing the patient's symptoms.
-2. Click on "Generate Assessment" to receive risk and category assessments.
-3. Click on "Generate Report" to receive a detailed report including hypothesis and clinical assessments.
-4. Download the assessments and reports as needed.
-5. Click "Reset Conversation" to start a new session.
-6. if you want faster response times change `chatbotGPT4` to `chatbotGPT3` where applicable (Ctrl+F is your friend)
-
-## Contributions
-
-Contributions, bug reports, and feature requests are welcome! Feel free to open an issue or create a pull request.
-
-## License
-
-Learning Use License Refer to LICENCE for further details. In short I want you to take this, understand how it works, then use the concept to build something new. This was done under retainer and therefore can't be replicable in this exact form.
